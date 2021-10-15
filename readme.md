@@ -15,7 +15,8 @@
 - cd blogspot
 - npm start 
 - http://localhost:4200
-- Remove app.component.* files
+- Generate posts module angular:module (name: posts, module: app, routing: true)
+- Generate profile module angular:module (name: profile, module: app, route: profile, routing: true)
 - Create app-routing.module.ts
 ``` ts 
 // src/app/app-routing.module.ts
@@ -45,8 +46,7 @@ export class AppRoutingModule {}
 })
 export class AppModule {}
 ```
-- Generate posts module angular:module (name: posts, module: app, routing: true)
-- Generate profile module angular:module (name: profile, module: app, route: profile, routing: true)
+
 - Organize components in containers directories
 - Create index.ts in containers folder, export profile and posts components
 ``` ts 
