@@ -1,0 +1,17 @@
+.post_grid {
+  box-shadow: none;
+  &__title {
+    color: #3f51b5;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  &__author {
+    color: #ff4081;
+  }
+
+  &__img {
+    width: 5rem;
+    height: 5rem;
+  }
+}

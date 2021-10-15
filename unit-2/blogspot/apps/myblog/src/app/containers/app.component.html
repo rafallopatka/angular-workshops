@@ -1,0 +1,21 @@
+<header class="header">
+  <a routerLink="/">
+    <img
+      class="logo logo--rounded header__logo"
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    />
+  </a>
+
+  <nav class="navigation">
+    <a class="navigation__link" mat-button color="primary" routerLink="/"
+      >Posts</a
+    >
+    <a class="navigation__link" mat-button color="accent" routerLink="profile"
+      >Profile</a
+    >
+    <a class="navigation__link--dead" mat-button>Dead link</a>
+  </nav>
+</header>
+<section class="content">
+  <router-outlet></router-outlet>
+</section>

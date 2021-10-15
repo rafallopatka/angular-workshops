@@ -1,0 +1,11 @@
+<mat-card class="vcard">
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>{{ profile.name }}</mat-card-title>
+    <mat-card-subtitle>{{ profile.email }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{ profile.photoUrl }}" />
+  <mat-card-content>
+    <p>Phone: {{ profile.phone }}</p>
+  </mat-card-content>
+</mat-card>

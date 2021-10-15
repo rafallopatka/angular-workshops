@@ -1,0 +1,15 @@
+<h2>Comments ({{ comments.length }})</h2>
+<div *ngFor="let comment of comments">
+  <mat-card>
+    <mat-card-title> {{ comment.name }} </mat-card-title>
+    <mat-card-subtitle>{{ comment.email }}</mat-card-subtitle>
+    <mat-card-content>
+      {{ comment.body }}
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="accent">LIKE</button>
+      <button mat-button color="primary">SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+  <br />
+</div>

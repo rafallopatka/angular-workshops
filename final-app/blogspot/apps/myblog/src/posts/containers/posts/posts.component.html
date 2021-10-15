@@ -1,0 +1,6 @@
+<blogspot-post-grid
+  [posts]="(posts$ | async)!"
+  [loading]="(loading$ | async)!"
+  (search)="onSearch($event)"
+>
+</blogspot-post-grid>
