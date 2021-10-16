@@ -15,7 +15,6 @@
 - cd blogspot
 - npm start 
 - http://localhost:4200
-- Remove app.component.* files
 - Create app-routing.module.ts
 ``` ts 
 // src/app/app-routing.module.ts
@@ -23,8 +22,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('../posts/posts.module').then(m => m.PostsModule) },
-  { path: 'profile', loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule) }
+
 ];
 
 @NgModule({
@@ -45,7 +43,7 @@ export class AppRoutingModule {}
 })
 export class AppModule {}
 ```
-- Generate posts module angular:module (name: posts, module: app, routing: true)
+- Generate posts module angular:module (name: posts, module: app, route: posts, routing: true)
 - Generate profile module angular:module (name: profile, module: app, route: profile, routing: true)
 - Organize components in containers directories
 - Create index.ts in containers folder, export profile and posts components
@@ -104,6 +102,9 @@ export interface UserProfile {
 }
 ```
 - Create profile/models/index.ts and export UserProfile
+```ts
+export * from './user-profile.model';
+```
 - Create posts/models/post-list-item.model.ts
 ``` ts 
 // src/profile/models/post-list-item.model.ts
@@ -138,11 +139,16 @@ export interface Comment {
 }
 ```
 - Create posts/models/index.ts and export PostListItem, Post, Comment
-- Generate component in profile/components (name: Vcard, style: scss) and import it by profile/components/index.ts and profile.module.ts 
-- Generate component in posts/components (name: PostsGrid, style: scss) and import it by posts/components/index.ts and posts.module.ts 
-- Generate component in posts/components (name: PostDisplay, style: scss) and import it by posts/components/index.ts and posts.module.ts 
-- Generate component in posts/components (name: CommentsList, style: scss) and import it by posts/components/index.ts and posts.module.ts 
-- Generate container in posts/containers (name: Post, style: scss) and import it by posts/containers/index.ts and posts.module.ts
+```ts
+export * from './post-list-item.model';
+export * from './comment.model';
+export * from './post.model';
+```
+- Generate component in profile/components (name: Vcard, style: scss, skip import: true) and import it by profile/components/index.ts and profile.module.ts 
+- Generate component in posts/components (name: PostsGrid, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
+- Generate component in posts/components (name: PostDisplay, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
+- Generate component in posts/components (name: CommentsList, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
+- Generate container in posts/containers (name: Post, style: scss, skip import: true) and import it by posts/containers/index.ts and posts.module.ts
 - Register PostComponent in posts-routing.module.ts
 ``` ts 
 // src/posts/post-routing.module.ts
@@ -160,6 +166,32 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class PostsRoutingModule { }
+```
+- Update AppRoutingModule
+```ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('../posts/posts.module').then((m) => m.PostsModule),
+  },
+
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('../profile/profile.module').then((m) => m.ProfileModule),
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+
 ```
 
 # Unit 1 - Angular Material, NxDatatable, SCSS + BEM
@@ -710,6 +742,72 @@ export class ProfileComponent implements OnInit {
 - nx add @ngrx/store-devtools@latest
 - nx add @ngrx/effects@latest
 - ng add @ngrx/router-store@latest
+- Copy workshop_assets/db.ts into app/services/db.ts
+- Generate service app/services/api-client.service.ts
+```ts
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
+import { Comment, Post, PostListItem } from '../../posts/models';
+import { UserProfile } from '../../profile/models';
+import { db } from './db';
+@Injectable({
+  providedIn: 'root',
+})
+export class ApiClientService {
+  getProfile(): Observable<UserProfile> {
+    return of({
+      id: 1,
+      name: 'Leanne Graham',
+      email: 'leanne.graham@contoso.com',
+      phone: '(775)976-6794-206',
+      photoUrl: 'https://picsum.photos/500',
+    } as UserProfile).pipe(delay(500));
+  }
+
+  getPostsList(searchPhrase: string): Observable<Array<PostListItem>> {
+    let posts = db.posts;
+
+    if (searchPhrase) {
+      posts = posts.filter((post) =>
+        post.title.toLowerCase().includes(searchPhrase.toLowerCase())
+      );
+    }
+
+    const results = posts.map(
+      (post) =>
+        ({
+          id: post.id,
+          authorId: post.userId,
+          title: post.title,
+          author: db.users.find((user) => user.id == post.userId)?.username,
+        } as PostListItem)
+    );
+    return of(results).pipe(delay(700));
+  }
+
+  getPost(id: number): Observable<Post> {
+    const post = db.posts.find((post) => post.id === id);
+    const userName = db.users.find((user) => user.id == post?.userId)?.username;
+
+    return of({
+      id: post?.id,
+      authorId: post?.userId,
+      body: post?.body,
+      title: post?.title,
+      author: userName,
+    } as Post).pipe(delay(400));
+  }
+
+  getComments(postId: number): Observable<Comment[]> {
+    const comments: Comment[] = db.comments.filter((comment) => comment.postId === postId);
+
+    return of(comments).pipe(delay(1000));
+  }
+}
+```
+
 - vscode nx generate @ngrx/schematics:feature (name: profile, module: profile, api: true, group: true)
 
 - Update profile.actions.ts
