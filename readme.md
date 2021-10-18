@@ -453,7 +453,7 @@ export class CommentsListComponent {
   @Input() comments!: Array<Comment>;
 }
 ```
-- Generate CommnetsList component
+- Update PostDisplay component
 ``` html
 <mat-card>
   <mat-card-title-group>
