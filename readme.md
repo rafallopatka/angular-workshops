@@ -309,7 +309,7 @@ export const MATERIALS = [
   ReactiveFormsModule,
 ];
 ```
-- Import componetns in app.module, posts.module, profile.module
+- Import MATERIALS in app.module, posts.module, profile.module
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
