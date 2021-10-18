@@ -310,6 +310,30 @@ export const MATERIALS = [
 ];
 ```
 - Import componetns in app.module, posts.module, profile.module
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ProfileRoutingModule } from './profile-routing.module';
+import { CONTAINERS } from '../profile/containers';
+import { COMPONENTS } from './components';
+import { MATERIALS } from '../app/components';
+
+
+@NgModule({
+  declarations: [
+    ...CONTAINERS,
+    ...COMPONENTS
+  ],
+  imports: [
+    CommonModule,
+    ProfileRoutingModule,
+    ...MATERIALS
+  ]
+})
+export class ProfileModule { }
+
+```
 - Update style.scss
 ```scss
 @import '~@swimlane/ngx-datatable/index.css';
