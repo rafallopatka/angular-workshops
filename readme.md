@@ -59,7 +59,7 @@ export const CONTAINERS = [
 ```
 Import containers in matching angular modules.
 ``` ts 
-// src/profile/containers/index.ts
+// src/profile/profile.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
