@@ -421,7 +421,7 @@ body {
   margin: 2rem;
 }
 ```
-- Generate component posts/components/CommentsList
+- Update component posts/components/CommentsList
 ``` html
 <h2>Comments ({{ comments.length }})</h2>
 <div *ngFor="let comment of comments">
