@@ -241,7 +241,7 @@ import { PostsComponent, PostComponent } from './containers';
 
 const routes: Routes = [
   { path: '', component: PostsComponent },
-  { path: ':id', component: PostComponent },
+  { path: 'posts/:id', component: PostComponent },
 ];
 
 @NgModule({
@@ -249,6 +249,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class PostsRoutingModule { }
+
 ```
 - Update AppRoutingModule
 ```ts
