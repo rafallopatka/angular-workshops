@@ -481,7 +481,7 @@ export class PostDisplayComponent {
   @Input() post!: Post;
 }
 ```
-- Generate PostGrid component
+- Update PostGrid component
 ``` html
 <mat-card>
   <mat-card-title-group>
