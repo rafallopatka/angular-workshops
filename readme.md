@@ -916,7 +916,7 @@ export class ApiClientService {
 }
 ```
 
-- vscode nx generate (right click on service directory) @ngrx/schematics:feature (name: profile, module: profile, api: true, group: true)
+- vscode nx generate (right click on profile directory) @ngrx/schematics:feature (name: profile, module: profile, api: true, group: true)
 
 - Update profile.actions.ts
 ```ts
