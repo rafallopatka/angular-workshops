@@ -175,6 +175,18 @@ export const COMPONENTS = [
 ];
 ```
 - Generate container in posts/containers (name: Post, style: scss, skip import: true) and import it by posts/containers/index.ts and posts.module.ts
+```ts
+import { PostComponent } from './post/post.component';
+import { PostsComponent } from './posts/posts.component';
+
+export * from './posts/posts.component';
+export * from './post/post.component';
+
+export const CONTAINERS = [
+  PostsComponent,
+  PostComponent
+];
+```
 - Register PostComponent in posts-routing.module.ts
 ``` ts 
 // src/posts/post-routing.module.ts
