@@ -187,6 +187,51 @@ export const CONTAINERS = [
   PostComponent
 ];
 ```
+- Update ProfileModule
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ProfileRoutingModule } from './profile-routing.module';
+import { CONTAINERS } from '../profile/containers';
+import { COMPONENTS } from './components';
+
+
+@NgModule({
+  declarations: [
+    ...CONTAINERS,
+    ...COMPONENTS
+  ],
+  imports: [
+    CommonModule,
+    ProfileRoutingModule
+  ]
+})
+export class ProfileModule { }
+
+```
+- Update PostsModule
+```ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { PostsRoutingModule } from './posts-routing.module';
+import { CONTAINERS } from './containers';
+import { COMPONENTS } from './components';
+
+@NgModule({
+  declarations: [
+    ...CONTAINERS,
+    ...COMPONENTS,
+  ],
+  imports: [
+    CommonModule,
+    PostsRoutingModule
+  ]
+})
+export class PostsModule { }
+
+```
 - Register PostComponent in posts-routing.module.ts
 ``` ts 
 // src/posts/post-routing.module.ts
