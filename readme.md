@@ -158,6 +158,22 @@ export const COMPONENTS = [
 - Generate component in posts/components (name: PostsGrid, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
 - Generate component in posts/components (name: PostDisplay, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
 - Generate component in posts/components (name: CommentsList, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
+- Create posts/components/index.ts
+```ts
+import { CommentsListComponent } from "./comments-list/comments-list.component";
+import { PostDisplayComponent } from "./post-display/post-display.component";
+import { PostGridComponent } from "./post-grid/post-grid.component";
+
+export * from "./comments-list/comments-list.component";
+export * from "./post-display/post-display.component";
+export * from "./post-grid/post-grid.component";
+
+export const COMPONENTS = [
+  CommentsListComponent,
+  PostDisplayComponent,
+  PostGridComponent
+];
+```
 - Generate container in posts/containers (name: Post, style: scss, skip import: true) and import it by posts/containers/index.ts and posts.module.ts
 - Register PostComponent in posts-routing.module.ts
 ``` ts 
