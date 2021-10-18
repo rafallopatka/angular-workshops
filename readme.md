@@ -11,8 +11,8 @@
 -  terminal
 - cd /unit-0
 - npx create-nx-workspace --preset=angular (workspace: blogspot, name: myblog, css: SASS, use cloud: No)
-- nx add @ngrx/schematics@latest
 - cd blogspot
+- nx add @ngrx/schematics@latest
 - npm start 
 - http://localhost:4200
 - Generate posts module angular:module (name: posts, module: app, routing: true)
