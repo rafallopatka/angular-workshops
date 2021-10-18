@@ -145,6 +145,16 @@ export * from './comment.model';
 export * from './post.model';
 ```
 - Generate component in profile/components (name: Vcard, style: scss, skip import: true) and import it by profile/components/index.ts and profile.module.ts 
+- Update profile/components/index.ts
+```ts
+import { VcardComponent } from './vcard/vcard.component';
+
+export * from './vcard/vcard.component';
+
+export const COMPONENTS = [
+  VcardComponent
+];
+```
 - Generate component in posts/components (name: PostsGrid, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
 - Generate component in posts/components (name: PostDisplay, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
 - Generate component in posts/components (name: CommentsList, style: scss, skip import: true) and import it by posts/components/index.ts and posts.module.ts 
